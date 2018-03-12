@@ -1,0 +1,169 @@
+{
+  "data": [
+    {
+      "shopName" : "Store1",
+      "shopId" : "0001",
+      "shopItems": [
+        {
+          "itemName": "Toyss",
+          "itemId": "10001",
+          "itemimg": "http://ovyjkveav.bkt.clouddn.com/17-10-19/15885901.jpg",
+          "itemPrice": 1000.00,
+          "minQuantity": 1,
+          "maxQuantity": 10,
+          "itemDes": "Ini Barang"
+        },
+        {
+          "itemName": "Toys",
+          "itemId": "10001",
+          "itemimg": "http://ovyjkveav.bkt.clouddn.com/17-10-19/15885901.jpg",
+          "itemPrice": 1100.00,
+          "minQuantity": 1,
+          "maxQuantity": 20,
+          "itemDes": "Ini Barang"
+        },
+        {
+          "itemName": "Toys",
+          "itemId": "10001",
+          "itemimg": "http://ovyjkveav.bkt.clouddn.com/17-10-19/15885901.jpg",
+          "itemPrice": 1200.00,
+          "minQuantity": 1,
+          "maxQuantity": 30,
+          "itemDes": "Ini Barang"
+        },
+        {
+          "itemName": "Toys",
+          "itemId": "10001",
+          "itemimg": "http://ovyjkveav.bkt.clouddn.com/17-10-19/15885901.jpg",
+          "itemPrice": 1300.00,
+          "minQuantity": 1,
+          "maxQuantity": 40,
+          "itemDes": "Ini Barang"
+        }
+      ]
+    },
+    {
+      "shopName" : "Store2",
+      "shopId" : "0001",
+      "shopItems": [
+        {
+          "itemName": "Toys",
+          "itemId": "10001",
+          "itemimg": "http://ovyjkveav.bkt.clouddn.com/17-10-19/15885901.jpg",
+          "itemPrice": 1400.00,
+          "minQuantity": 1,
+          "maxQuantity": 5,
+          "itemDes": "Ini Barang"
+        },
+        {
+          "itemName": "Toys",
+          "itemId": "10001",
+          "itemimg": "http://ovyjkveav.bkt.clouddn.com/17-10-19/15885901.jpg",
+          "itemPrice": 1500.00,
+          "minQuantity": 1,
+          "maxQuantity": 15,
+          "itemDes": "Ini Barang"
+        },
+        {
+          "itemName": "Toys",
+          "itemId": "10001",
+          "itemimg": "http://ovyjkveav.bkt.clouddn.com/17-10-19/15885901.jpg",
+          "itemPrice": 1600.00,
+          "minQuantity": 1,
+          "maxQuantity": 22,
+          "itemDes": "Ini Barang"
+        },
+        {
+          "itemName": "Toys",
+          "itemId": "10001",
+          "itemimg": "http://ovyjkveav.bkt.clouddn.com/17-10-19/15885901.jpg",
+          "itemPrice": 1700.00,
+          "minQuantity": 1,
+          "maxQuantity": 24,
+          "itemDes": "Ini Barang"
+        }
+      ]
+    },
+    {
+      "shopName" : "Store3",
+      "shopId" : "0001",
+      "shopItems": [
+        {
+          "itemName": "Toys",
+          "itemId": "10001",
+          "itemimg": "http://ovyjkveav.bkt.clouddn.com/17-10-19/15885901.jpg",
+          "itemPrice": 1800.00,
+          "minQuantity": 1,
+          "maxQuantity": 6,
+          "itemDes": "Ini Barang"
+        },
+        {
+          "itemName": "Toys",
+          "itemId": "10001",
+          "itemimg": "http://ovyjkveav.bkt.clouddn.com/17-10-19/15885901.jpg",
+          "itemPrice": 1000.00,
+          "minQuantity": 1,
+          "maxQuantity": 8,
+          "itemDes": "Ini Barang"
+        },
+        {
+          "itemName": "Toys",
+          "itemId": "10001",
+          "itemimg": "http://ovyjkveav.bkt.clouddn.com/17-10-19/15885901.jpg",
+          "itemPrice": 1000.00,
+          "minQuantity": 1,
+          "maxQuantity": 10,
+          "itemDes": "Ini Barang"
+        },
+        {
+          "itemName": "Toys",
+          "itemId": "10001",
+          "itemimg": "http://ovyjkveav.bkt.clouddn.com/17-10-19/15885901.jpg",
+          "itemPrice": 1000.00,
+          "minQuantity": 1,
+          "maxQuantity": 100,
+          "itemDes": "Ini Barang"
+        }
+      ]
+    },
+    {
+      "shopName" : "Store4",
+      "shopId" : "0001",
+      "shopItems": [
+        {
+          "itemName": "Toys",
+          "itemId": "10001",
+          "itemimg": "http://ovyjkveav.bkt.clouddn.com/17-10-19/15885901.jpg",
+          "itemPrice": 500.00,
+          "minQuantity": 1,
+          "maxQuantity": 3,
+          "itemDes": "Ini Barang"
+        },
+        {
+          "itemName": "Toys",
+          "itemId": "10001",
+          "itemimg": "http://ovyjkveav.bkt.clouddn.com/17-10-19/15885901.jpg",
+          "itemPrice": 1000.00,
+          "minQuantity": 1,
+          "maxQuantity": 9,
+          "itemDes": "Ini Barang"
+        }
+      ]
+    },
+    {
+      "shopName" : "Store5",
+      "shopId" : "0001",
+      "shopItems": [
+        {
+          "itemName": "Toys",
+          "itemId": "10001",
+          "itemimg": "http://ovyjkveav.bkt.clouddn.com/17-10-19/15885901.jpg",
+          "itemPrice": 100.00,
+          "minQuantity": 1,
+          "maxQuantity": 20,
+          "itemDes": "Ini Barang"
+        }
+      ]
+    }
+  ]
+}

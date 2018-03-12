@@ -1,0 +1,71 @@
+
+
+import {Platform} from 'react-native'
+export const commonStyle = {
+
+ 
+  red: '#FF0000',
+  orange: '#FFA500',
+  yellow: '#FFFF00',
+  green: '#00FF00',
+  cyan: '#00FFFF',
+  blue: '#0000FF',
+  purple: '#800080',
+  black: '#000',
+  white: '#FFF',
+  gray: '#808080',
+  drakGray: '#A9A9A9',
+  lightGray: '#D3D3D3',
+  tomato: '#FF6347',
+  PeachPuff: '#FFDAB9',
+  clear: 'transparent',
+
+  themeColor: '#e74c3c',
+  textGrayColor: '#989898',
+  textBlockColor: '#262626',
+  bgColor: '#E6E6E6',
+  lineColor: '#E6E6E6',
+  placeholderColor: '#eee',
+  borderColor: '#808080',
+  navTitleColor: '#262626',
+  navLeftTitleColor: '#333',
+  navRightTitleColor: '#333',
+  navThemeColor: '#FEFEFE',
+  iconGray: '#989898',
+  iconBlack: '#262626',
+
+  marginTop: 10,
+  marginLeft: 10,
+  marginBotton: 10,
+  marginRight: 10,
+  padding: 10,
+  navMarginLeft: 15,
+  navMarginRight: 15,
+
+  navImageWidth: 25,
+  borderWidth: 1,
+  lineWidth: 0.8,
+  navHeight: Platform.OS === 'ios' ? 64 : 56,
+  navStatusBarHeight: Platform.OS === 'ios' ? 20 : 0,
+  navContentHeight: Platform.OS === 'ios' ? 44 : 56,
+  tabBar: 49,
+  bottonBtnHeight: 44,
+  cellHeight: 44,
+  navImageHeight: 25,
+  textFont: 14,
+  btnFont: 15,
+  navTitleFont: 17,
+  barBarTitleFont: 12,
+  placeholderFont: 13,
+  navRightTitleFont: 15,
+  navLeftTitleFont: 15,
+  modalOpacity: 0.3,
+  taOpacity: 0.1,
+
+  absolute: 'absolute',
+
+  around: 'space-around',
+  between: 'space-between',
+  center: 'center',
+  row: 'row'
+}
