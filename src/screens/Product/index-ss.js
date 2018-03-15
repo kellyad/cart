@@ -15,67 +15,165 @@ class Home extends Component {
     super(props)
     this.renderItem = this.renderItem.bind(this)
     this.renderSectionHeader = this.renderSectionHeader.bind(this)
-    
+    this.state = {
+      status: [],
+      isSelectedAllItem: false,
+      totalNum: 0,
+      totalPrice: 0.00
+    }
   }
 
   componentWillMount() {
-    // let dataArr = shoppingCartData.data
-    // let tempStatusArr = []
-    // for (let i = 0; i < dataArr.length; i++) {
-    //   let items = dataArr[i].shopItems
-    //   let shopObj = {}
-    //   shopObj.checked = false
-    //   let tempItems = []
-    //   for (let j = 0; j < items.length; j++) {
-    //     let item = items[j]
-    //     item.checked = false
-    //     item.quantity = item.minQuantity
-    //     tempItems.push(item)
-    //   }
-    //   shopObj.items = tempItems
-    //   tempStatusArr.push(shopObj)
-    // }
-    // this.props.status = tempStatusArr
-    //console.log(this.props.status)
+    let dataArr = shoppingCartData.data
+    let tempStatusArr = []
+    for (let i = 0; i < dataArr.length; i++) {
+      let items = dataArr[i].shopItems
+      let shopObj = {}
+      shopObj.checked = false
+      let tempItems = []
+      for (let j = 0; j < items.length; j++) {
+        let item = items[j]
+        item.checked = false
+        item.quantity = item.minQuantity
+        tempItems.push(item)
+      }
+      shopObj.items = tempItems
+      tempStatusArr.push(shopObj)
+    }
+    this.state.status = tempStatusArr
+    console.log(this.state.status)
   }
 
   componentDidMount() {
   }
 
   checkItem(sectionIndex, index) {
-    console.log(sectionIndex);
-        this.props.checkItem({sectionIndexes: sectionIndex, indexes: index});
+    let tempStatus = this.state.status
+    let tempShop = tempStatus[sectionIndex]
+    let tempShopItems = tempStatus[sectionIndex].items
+    let item = tempShopItems[index]
+    item.checked = !item.checked
+
+    let isSelectedAllShopItem = true
+    for (let j = 0; j < tempShopItems.length; j++) {
+      let item = tempShopItems[j]
+      if (!item.checked) {
+        isSelectedAllShopItem = false
+        break
+      }
+    }
+
+    tempShop.checked = isSelectedAllShopItem
+
+    let isSelectedAllShop = true
+    for (let k = 0; k < tempStatus.length; k ++) {
+      let shop = tempStatus[k]
+      if (!shop.checked) {
+        isSelectedAllShop = false
+        break
+      }
+    }
 
     this.calculateCountAndPrice()
+    this.setState({isSelectedAllItem: isSelectedAllShop, status: tempStatus})
   }
 
   checkedShop(index) {
-        this.props.checkShop({ indexes: index});
+    let tempStatus = this.state.status
+    let shop = tempStatus[index]
+    shop.checked = !shop.checked
+    let items = shop.items
+    for (let j = 0; j < items.length; j++) {
+      let item = items[j]
+      item.checked = shop.checked
+    }
+
+    let isSelectedAllShop = true
+    for (let j = 0; j < tempStatus.length; j++) {
+      let shop = tempStatus[j]
+      if (!shop.checked) {
+        isSelectedAllShop = false
+        break
+      }
+    }
+
     this.calculateCountAndPrice()
+    this.setState({isSelectedAllItem: isSelectedAllShop, status: tempStatus})
   }
 
   checkAllShop() {
-        this.props.checkAllShop();
+    let tempSelectedAllItem = !this.state.isSelectedAllItem
+    let tempStatus = this.state.status
+    for (let i = 0; i < tempStatus.length; i++) {
+      let shop = tempStatus[i]
+      shop.checked = tempSelectedAllItem
+      let items = shop.items
+      for (let j = 0; j < items.length; j++) {
+        let item = items[j]
+        item.checked = tempSelectedAllItem
+      }
+    }
+
     this.calculateCountAndPrice()
-  }
-  minus(sectionIndex, index) {
-        this.props.addMinCart({sectionIndexes: sectionIndex, indexes: index, counter : -1});
+    this.setState({isSelectedAllItem: tempSelectedAllItem, status: tempStatus})
   }
 
-  add(sectionIndex, index) { 
-        this.props.addMinCart({sectionIndexes: sectionIndex, indexes: index, counter : 1});
+  minus(sectionIndex, index) {
+    let tempStatus = this.state.status
+    let shop = tempStatus[sectionIndex]
+    let items = shop.items
+    let item = items[index]
+    if (item.quantity <= item.minQuantity) {
+      alert('min quantity:'+item.minQuantity)
+    } else {
+      item.quantity -= 1
+    }
+
+    if (item.checked) {
+      this.calculateCountAndPrice()
+    }
+    this.setState({status: tempStatus})
+  }
+
+  add(sectionIndex, index) {
+    let tempStatus = this.state.status
+    let shop = tempStatus[sectionIndex]
+    let items = shop.items
+    let item = items[index]
+    if (item.quantity >= item.maxQuantity) {
+      alert('max quantity:'+item.maxQuantity)
+    } else {
+      item.quantity += 1
+    }
+    if (item.checked) {
+      this.calculateCountAndPrice()
+    }
+    this.setState({status: tempStatus})
   }
 
   calculateCountAndPrice() {
-        this.props.CalculateandPrice();
-
+    let tempTotalNum = 0
+    let tempTotalPrice = 0
+    let tempStatus = this.state.status
+    for (let i = 0; i < tempStatus.length; i ++) {
+      let shop = tempStatus[i]
+      let items = shop.items
+      for (let j = 0; j < items.length; j++) {
+        let item = items[j]
+        if (item.checked) {
+          tempTotalNum += 1
+          tempTotalPrice += item.itemPrice * item.quantity
+        }
+      }
+    }
+    this.setState({totalNum: tempTotalNum, totalPrice: tempTotalPrice})
   }
 
   renderItem = info => {
     let item = info.item
     let index = info.index
     let sectionIndex = info.section.index
-    let shop = this.props.status[sectionIndex]
+    let shop = this.state.status[sectionIndex]
     let statusItem = shop.items[index]
     return (
       <View style={styles.cellStyle}>
@@ -106,7 +204,7 @@ class Home extends Component {
   renderSectionHeader = info => {
     let section = info.section.key
     let index = info.section.index
-    let shop = this.props.status[index]
+    let shop = this.state.status[index]
     return (
       <View style={styles.sectionHeader}>
         <TouchableOpacity onPress={() => this.checkedShop(index)}>
@@ -141,17 +239,17 @@ class Home extends Component {
         <View style={styles.toolBar}>
           <View style={{flex: 1, flexDirection: commonStyle.row, alignItems: commonStyle.center}}>
             <TouchableOpacity onPress={() => this.checkAllShop()}>
-              <Image style={styles.checkBox}  source={this.props.isSelectedAllItem ? require('../../../assets/ic_selected.png') : require('../../../assets/ic_defult.png')} resizeMode={'center'}/>
+              <Image style={styles.checkBox}  source={this.state.isSelectedAllItem ? require('../../../assets/ic_selected.png') : require('../../../assets/ic_defult.png')} resizeMode={'center'}/>
             </TouchableOpacity>
             <Text>TOTAL</Text>
           </View>
           <Text style={{marginHorizontal: 10}}>Total:
-            <Text style={{color: commonStyle.red}}>Rp.{parseFloat(this.props.totalPrice).toFixed(2)}</Text>
+            <Text style={{color: commonStyle.red}}>Rp.{parseFloat(this.state.totalPrice).toFixed(2)}</Text>
           </Text>
           <View style={{width: 120, backgroundColor: commonStyle.red, alignItems: commonStyle.center, justifyContent: commonStyle.center, height: commonStyle.cellHeight}}>
             
-        <TouchableOpacity onPress={() => this.props.navigation.navigate("Cart", {items : this.props.status})}>
-          <Text style={{color: commonStyle.white}}>Pay({this.props.totalNum})</Text>
+        <TouchableOpacity onPress={() => this.props.navigation.navigate("Cart", {items : this.state.status})}>
+          <Text style={{color: commonStyle.white}}>Pay({this.state.totalNum})</Text>
           </TouchableOpacity>
           </View>
         </View>
@@ -164,10 +262,9 @@ class Home extends Component {
 // This function makes Redux know that this component needs to be passed a piece of the state
 function mapStateToProps(state, props) {
     return {
-        status: state.dataReducer.status,
-        isSelectedAllItem: state.dataReducer.isSelectedAllItem,
-          totalNum: state.dataReducer.totalNum,
-          totalPrice : state.dataReducer.totalPrice
+        /*username: state.dataReducer.username,
+        password: state.dataReducer.password,
+        count: state.dataReducer.count*/
     }
 }
 

@@ -59,11 +59,11 @@ const Cart = (props) => {
           let item = items[j]
           if (item.checked) {
             tempTotalNum += 1
-            TotalPrice += item.itemPrice * item.quantity
+            totalPrice += item.itemPrice * item.quantity
             tempTotalPrice += item.itemPrice * item.quantity
-          Dataarray.push({ image : item.itemimg ,name : item.itemName,  price : item.itemPrice, quantity : item.quantity, totalprice : TotalPrice});
+          Dataarray.push({ image : item.itemimg ,name : item.itemName,  price : item.itemPrice, quantity : item.quantity, totalprice : totalPrice});
           }
-          TotalPrice =0
+          totalPrice =0
         }
       }
     return (

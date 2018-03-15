@@ -6,7 +6,8 @@ import Product from "./screens/Product/";
 import ProductDetail from "./screens/ProductDetail/";
 import SideBar from "./screens/sidebar/";
 import Cart from "./screens/Cart/";
-
+//masih salah
+//ikutin https://reactnavigation.org/docs/redux-integration.html
 const Drawer = DrawerNavigator(
   {
     Home: { screen: Product },
@@ -31,6 +32,7 @@ const AppNavigator = StackNavigator(
     headerMode: "none"
   }
 );
+const initialState = AppNavigator.router.getStateForAction(AppNavigator.router.getActionForPathAndParams('Login'));
 
 export default () =>
   <Root>
