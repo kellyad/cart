@@ -61,7 +61,7 @@ const dataReducer = (state = dataState, action) => {
             state.totalNum= tempTotalNum
             state.totalPrice= tempTotalPrice
             console.log(state.totalNum);
-            return state;
+            return Object.assign({}, state, {totalNum: (tempTotalNum), totalPrice: tempTotalPrice});
         break;
         //Cart
         case 'ADD_MIN_CART':
@@ -78,7 +78,7 @@ const dataReducer = (state = dataState, action) => {
             }
             state.status= tempStatus
          
-            return state;
+            return Object.assign({}, state, {status: (tempStatus)});
         break;
 
         case 'CHECK_ITEM':
@@ -110,7 +110,7 @@ const dataReducer = (state = dataState, action) => {
             state.isSelectedAllItem = isSelectedAllShop
             state.status  = tempStatus
             console.log(state.status)
-            return state;
+            return Object.assign({}, state, {status: (tempStatus),isSelectedAllItem : isSelectedAllShop});
         break;
 
 
@@ -128,7 +128,7 @@ const dataReducer = (state = dataState, action) => {
             state.isSelectedAllItem = tempSelectedAllItem
             state.status = tempStatus
 
-            return state;
+            return Object.assign({}, state, {status: (tempStatus),isSelectedAllItem : tempSelectedAllItem});
         break;
 
         case 'CHECK_SHOP':
@@ -145,7 +145,7 @@ const dataReducer = (state = dataState, action) => {
             state.isSelectedAllItem = tempSelectedAllItem
             state.status = tempStatus
 
-            return state;
+            return Object.assign({}, state, {status: (tempStatus),isSelectedAllItem : tempSelectedAllItem});
         break;
         
         default:

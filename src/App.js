@@ -32,8 +32,6 @@ const AppNavigator = StackNavigator(
     headerMode: "none"
   }
 );
-const initialState = AppNavigator.router.getStateForAction(AppNavigator.router.getActionForPathAndParams('Login'));
-
 export default () =>
   <Root>
     <AppNavigator />
