@@ -1,11 +1,11 @@
 export const DATA_AVAILABLE = 'DATA_AVAILABLE';
 export const DATA_COUNT = 'DATA_COUNT';
-export const GET_DATA_COUNT = 'GET_DATA_COUNT';
 export const ADD_MIN_CART = 'ADD_MIN_CART';
 export const CALCULATEANDPRICE = 'CALCULATEANDPRICE';
 export const CHECK_ITEM = 'CHECK_ITEM';
 export const CHECK_SHOP = 'CHECK_SHOP';
 export const CHECK_ALL_SHOP = 'CHECK_ALL_SHOP';
+export const DELETE_ITEM = 'DELETE_ITEM';
 
 export function setCount(count){
     let action = {
@@ -17,11 +17,13 @@ export function setCount(count){
     }
 }
 
-export function getCount() {
+
+export function deleteItem(obj){
     let action = {
-        type: DATA_COUNT,
-        count: 0,
-    };
+        type: DELETE_ITEM,
+        sectionIndex: obj.sectionIndexes,
+        index: obj.indexes
+    }
     return (dispatch) => {
         dispatch(action);
     }

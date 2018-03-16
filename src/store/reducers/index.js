@@ -113,12 +113,20 @@ const dataReducer = (state = dataState, action) => {
             return Object.assign({}, state, {status: (tempStatus),isSelectedAllItem : isSelectedAllShop});
         break;
 
+        case 'DELETE_ITEM':
+            tempStatus[action.sectionIndex].items[action.index].quantity = tempStatus[action.sectionIndex].items[action.index].minQuantity;
+            tempStatus[action.sectionIndex].items[action.index].checked = false;
+            tempStatus.isSelectedAllItem = false;
+            tempStatus[action.sectionIndex].checked = false;
+            return Object.assign({}, state, {status: (tempStatus),isSelectedAllItem : false});
+        break;
 
         case 'CHECK_ALL_SHOP':
+        tempSelectedAllItem = !state.isSelectedAllItem
             for (let i = 0; i < tempStatus.length; i++) {
               let shop2 = tempStatus[i]
               shop2.checked = tempSelectedAllItem
-              let items2 = shop.items
+              let items2 = shop2.items
               for (let j = 0; j < items2.length; j++) {
                 let item2 = items2[j]
                 item2.checked = tempSelectedAllItem
@@ -127,25 +135,32 @@ const dataReducer = (state = dataState, action) => {
 
             state.isSelectedAllItem = tempSelectedAllItem
             state.status = tempStatus
-
+            console.log(state.isSelectedAllItem);
             return Object.assign({}, state, {status: (tempStatus),isSelectedAllItem : tempSelectedAllItem});
         break;
 
         case 'CHECK_SHOP':
-              for (let i = 0; i < tempStatus.length; i++) {
-              let shop3 = tempStatus[i]
-              shop3.checked = tempSelectedAllItem
+
+              let shop3 = tempStatus[action.index]
+              shop3.checked = !shop3.checked
               let items3 = shop3.items
               for (let j = 0; j < items3.length; j++) {
                 let item3 = items3[j]
-                item3.checked = tempSelectedAllItem
+                item3.checked = shop3.checked
               }
-            }
-
-            state.isSelectedAllItem = tempSelectedAllItem
+              let isSelectedAllShop1 = true
+              for (let j = 0; j < tempStatus.length; j++) {
+                let shop3 = tempStatus[j]
+                if (!shop3.checked) {
+                  isSelectedAllShop1 = false
+                  break
+                }
+              }
+            
+            state.isSelectedAllItem = isSelectedAllShop1
             state.status = tempStatus
 
-            return Object.assign({}, state, {status: (tempStatus),isSelectedAllItem : tempSelectedAllItem});
+            return Object.assign({}, state, {status: (tempStatus),isSelectedAllItem : isSelectedAllShop1});
         break;
         
         default:

@@ -4,6 +4,9 @@ import { Container, Button, H3 } from "native-base";
 
 import {commonStyle} from '../../../commonStyle';
 
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as ActionsRedux from '../../store/actions/index';
 import {Text, TouchableOpacity, Image, StyleSheet, SectionList} from 'react-native'
 const launchscreenBg = require("../../../assets/launchscreen-bg.png");
 const launchscreenLogo = require("../../../assets/evhive.png");
@@ -74,7 +77,7 @@ const Cart = (props) => {
           <Text style={{marginTop: 15, fontSize: 17}}>Cart Details</Text>
         </View>
         <View style={styles.toolBar}>
-          <View style={{flex: 1, flexDirection: commonStyle.row, alignItems: commonStyle.center}}>
+          <View style={{flex: 1,  alignItems: commonStyle.center}}>
           {Dataarray.map((index, i) => (
                 <View style={{justifyContent: commonStyle.around, flex: 1, marginHorizontal: 10, height: 50}}>
                   <Text>Name : {index.name}</Text>
@@ -93,5 +96,18 @@ const Cart = (props) => {
       </Container>
     );
   }
-
-export default Cart;
+function mapStateToProps(state, props) {
+    return {
+        status: state.dataReducer.status,
+        isSelectedAllItem: state.dataReducer.isSelectedAllItem,
+          totalNum: state.dataReducer.totalNum,
+          totalPrice : state.dataReducer.totalPrice
+    }
+}
+// Doing this merges our actions into the component’s props,
+// while wrapping them in dispatch() so that they immediately dispatch an Action.
+// Just by doing this, we will have access to the actions defined in out actions file (action/home.js)
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators(ActionsRedux, dispatch);
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Cart); 
